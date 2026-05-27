@@ -52,6 +52,59 @@ authentication-app/
 └── README.md
 ```
 
+## Git Setup
+
+### Initialize the repository
+```bash
+cd authentication-app
+git init
+```
+
+### Create .gitignore
+Create a `.gitignore` file in the project root:
+
+```gitignore
+### Java ###
+target/
+*.class
+*.jar
+*.war
+*.log
+
+### Maven ###
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IDE ###
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+*.swp
+*.swo
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Env / Secrets ###
+*.env
+application-local.properties
+```
+
+### Commit and push
+```bash
+git add .
+git commit -m "Initial commit - Simple Auth System"
+git branch -M main
+
+# Create a repo on GitHub first, then:
+git remote add origin https://github.com/your-username/your-repo-name.git
+git push -u origin main
+```
+
 ## Prerequisites
 
 - **Java 17+** installed

@@ -1,0 +1,28 @@
+### Java ###
+target/
+*.class
+*.jar
+*.war
+*.log
+
+### Maven ###
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IDE ###
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+*.swp
+*.swo
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Env / Secrets ###
+*.env
+application-local.properties
