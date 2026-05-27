@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Auth System</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-base-200 min-h-screen">
+    <div class="navbar bg-base-100 shadow-lg mb-8">
+        <div class="flex-1">
+            <a class="btn btn-ghost text-xl">Auth System</a>
+        </div>
+        <div class="flex-none gap-2">
+            <span id="displayUsername" class="text-sm mr-4"></span>
+            <button onclick="handleLogout()" class="btn btn-outline btn-error btn-sm">
+                Logout
+            </button>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4">
+        <div class="hero min-h-[60vh]">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <div class="avatar placeholder mb-6">
+                        <div class="bg-primary text-neutral-content rounded-full w-24 h-24 mx-auto">
+                            <span id="avatarLetter" class="text-4xl"></span>
+                        </div>
+                    </div>
+                    <h1 class="text-4xl font-bold mb-4">
+                        Welcome, <span id="welcomeUsername"></span>!
+                    </h1>
+                    <p class="text-lg mb-6 text-gray-500">
+                        You are successfully logged in.
+                    </p>
+                    <div class="card bg-base-100 shadow-xl mb-6">
+                        <div class="card-body text-left">
+                            <h3 class="card-title mb-4">Account Details</h3>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Username:</span>
+                                    <span id="profileUsername"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Email:</span>
+                                    <span id="profileEmail"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">User ID:</span>
+                                    <span id="profileId"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="database-details.html" class="btn btn-outline btn-info">
+                        View Database Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+    <script>
+        var currentUser = JSON.parse(localStorage.getItem('user'));
+
+        if (!currentUser) {
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('displayUsername').textContent = currentUser.username;
+            document.getElementById('welcomeUsername').textContent = currentUser.username;
+            document.getElementById('avatarLetter').textContent = currentUser.username.charAt(0).toUpperCase();
+            document.getElementById('profileUsername').textContent = currentUser.username;
+            document.getElementById('profileEmail').textContent = currentUser.email;
+            document.getElementById('profileId').textContent = currentUser.id;
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

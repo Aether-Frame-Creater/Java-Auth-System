@@ -1,0 +1,11 @@
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/repository/UserRepository.java
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/dto/ApiResponse.java
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/controller/AuthController.java
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/dto/LoginRequest.java
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/config/SecurityConfig.java
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/dto/RegisterRequest.java
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/dto/ForgotPasswordRequest.java
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/dto/ResetPasswordRequest.java
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/entity/User.java
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/service/AuthService.java
+/home/afc/Projects/Java_Project/authentication-app/backend/src/main/java/com/example/auth/AuthApplication.java

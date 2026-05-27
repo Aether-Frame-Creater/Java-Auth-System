@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Auth System</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-base-200">
+    <div class="card w-full max-w-md bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title text-2xl font-bold text-center justify-center mb-4">
+                Create Account
+            </h2>
+
+            <div id="errorAlert" class="alert alert-error hidden">
+                <span id="errorText"></span>
+            </div>
+            <div id="successAlert" class="alert alert-success hidden">
+                <span id="successText"></span>
+            </div>
+
+            <form id="registerForm">
+                <div class="form-control mb-4">
+                    <label class="label" for="username">
+                        <span class="label-text">Username</span>
+                    </label>
+                    <input type="text" id="username" class="input input-bordered" required minlength="3">
+                </div>
+
+                <div class="form-control mb-4">
+                    <label class="label" for="email">
+                        <span class="label-text">Email</span>
+                    </label>
+                    <input type="email" id="email" class="input input-bordered" required>
+                </div>
+
+                <div class="form-control mb-4">
+                    <label class="label" for="password">
+                        <span class="label-text">Password</span>
+                    </label>
+                    <input type="password" id="password" class="input input-bordered" required minlength="6">
+                    <label class="label">
+                        <span class="label-text-alt">At least 6 characters</span>
+                    </label>
+                </div>
+
+                <div class="form-control mb-4">
+                    <label class="label" for="confirmPassword">
+                        <span class="label-text">Confirm Password</span>
+                    </label>
+                    <input type="password" id="confirmPassword" class="input input-bordered" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full">
+                    Register
+                </button>
+            </form>
+
+            <div class="divider">OR</div>
+
+            <div class="text-center">
+                <a href="index.html" class="link link-primary">Already have an account? Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            hideAlerts();
+
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (!username || !email || !password || !confirmPassword) {
+                showError('Please fill in all fields');
+                return;
+            }
+
+            if (username.length < 3) {
+                showError('Username must be at least 3 characters');
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showError('Passwords do not match');
+                return;
+            }
+
+            fetch(`${API_URL}/api/auth/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password })
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.success) {
+                    showSuccess(data.message);
+                    document.getElementById('registerForm').reset();
+                    setTimeout(function() {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    showError(data.message);
+                }
+            })
+            .catch(function() {
+                showError('Connection error. Make sure the backend is running.');
+            });
+        });
+    </script>
+</body>
+</html>
