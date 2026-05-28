@@ -435,5 +435,3 @@ mindmap
 > - Password reset functional ✅
 
 
-```
-
